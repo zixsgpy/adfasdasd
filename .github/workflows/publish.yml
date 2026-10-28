@@ -58,16 +58,17 @@ jobs:
               with:
                   tag_prefix: "v"
 
-            - name: Setup PNPM
-              if: steps.check.outputs.release == 'true'
-              uses: pnpm/action-setup@v3
-
             - name: Use Node.js 20
               if: steps.check.outputs.release == 'true'
               uses: actions/setup-node@v4
               with:
                   node-version: 20
-                  cache: "pnpm"
+
+            - name: Enable Corepack & install pnpm
+              if: steps.check.outputs.release == 'true'
+              run: |
+                  corepack enable
+                  corepack install
 
             - name: Install dependencies
               if: steps.check.outputs.release == 'true'

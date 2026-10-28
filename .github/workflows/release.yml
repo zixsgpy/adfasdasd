@@ -28,8 +28,10 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      - name: Enable Corepack & install pnpm
+        run: |
+          corepack enable
+          corepack install
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
