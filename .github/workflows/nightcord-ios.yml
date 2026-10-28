@@ -1,0 +1,82 @@
+#
+# Nightcord, a Discord client mod
+# Copyright (c) 2026 Vendicated and contributors
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+name: Build Nightcord iOS
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'ios/**'
+      - 'browser/**'
+      - 'src/**'
+      - 'scripts/build/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+
+permissions:
+  contents: read
+
+jobs:
+  build-ios:
+    runs-on: macos-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.30.3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Nightcord web resources
+        run: pnpm buildIOS
+
+      - name: Build unsigned iOS app
+        run: |
+          mkdir -p build
+          xcodebuild \
+            -project ios/Nightcord/Nightcord.xcodeproj \
+            -scheme Nightcord \
+            -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -archivePath build/Nightcord.xcarchive \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            archive
+
+      - name: Package unsigned .app and IPA layout
+        run: |
+          APP_PATH=$(find build/Nightcord.xcarchive/Products/Applications -name 'Nightcord.app' -print -quit)
+          if [ -z "$APP_PATH" ]; then
+            echo 'Nightcord.app was not produced'
+            exit 1
+          fi
+
+          mkdir -p build/ipa/Payload
+          cp -R "$APP_PATH" build/ipa/Payload/
+          ditto -c -k --sequesterRsrc --keepParent build/ipa/Payload build/Nightcord-unsigned.ipa
+          ditto -c -k --sequesterRsrc --keepParent build/Nightcord.xcarchive build/Nightcord.xcarchive.zip
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Nightcord-iOS-unsigned
+          path: |
+            build/Nightcord-unsigned.ipa
+            build/Nightcord.xcarchive.zip
+            ios/Nightcord/Nightcord/Resources/Nightcord.js
+            ios/Nightcord/Nightcord/Resources/Nightcord.css
+          if-no-files-found: error

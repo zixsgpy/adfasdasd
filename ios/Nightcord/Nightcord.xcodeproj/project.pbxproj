@@ -1,0 +1,34 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 56;
+	objects = {
+		APPDELEGATE /* AppDelegate.swift */ = {isa = PBXBuildFile; fileRef = APPDELEGATEFILE; };
+		APPDELEGATEFILE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		SCENEDELEGATE /* SceneDelegate.swift */ = {isa = PBXBuildFile; fileRef = SCENEDELEGATEFILE; };
+		SCENEDELEGATEFILE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		JSRESOURCE /* Nightcord.js */ = {isa = PBXBuildFile; fileRef = JSREF; };
+		CSSRESOURCE /* Nightcord.css */ = {isa = PBXBuildFile; fileRef = CSSREF; };
+		JSREF /* Nightcord.js */ = {isa = PBXFileReference; lastKnownFileType = text; path = Nightcord.js; sourceTree = "<group>"; };
+		CSSREF /* Nightcord.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Nightcord.css; sourceTree = "<group>"; };
+		INFOPLISTREF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FRAMEWORKS /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		RESOURCES /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (JSRESOURCE, CSSRESOURCE); runOnlyForDeploymentPostprocessing = 0; };
+		SOURCES /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (APPDELEGATE, SCENEDELEGATE); runOnlyForDeploymentPostprocessing = 0; };
+		RESOURCEGROUP /* Resources */ = {isa = PBXGroup; children = (JSREF, CSSREF); path = Resources; sourceTree = "<group>"; };
+		MAINGROUP /* Nightcord */ = {isa = PBXGroup; children = (APPDELEGATEFILE, SCENEDELEGATEFILE, INFOPLISTREF, RESOURCEGROUP); path = Nightcord; sourceTree = "<group>"; };
+		PROJECTGROUP /* Main */ = {isa = PBXGroup; children = (MAINGROUP, PRODUCTGROUP); sourceTree = "<group>"; };
+		PRODUCTGROUP /* Products */ = {isa = PBXGroup; children = (PRODUCT); name = Products; sourceTree = "<group>"; };
+		PRODUCT /* Nightcord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nightcord.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		APPNATIVE /* Nightcord */ = {isa = PBXNativeTarget; buildConfigurationList = APPCONFIGS; buildPhases = (SOURCES, FRAMEWORKS, RESOURCES); buildRules = (); dependencies = (); name = Nightcord; productName = Nightcord; productReference = PRODUCT; productType = "com.apple.product-type.application"; };
+		PROJECT /* Project object */ = {isa = PBXProject; attributes = {LastSwiftUpdateCheck = 1500; LastUpgradeCheck = 1500; TargetAttributes = {APPNATIVE = {CreatedOnToolsVersion = 15.0;};}; }; buildConfigurationList = PROJECTCONFIGS; compatibilityVersion = "Xcode 14.0"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en, Base); mainGroup = PROJECTGROUP; productRefGroup = PRODUCTGROUP; projectDirPath = ""; projectRoot = ""; targets = (APPNATIVE); };
+		DEBUGCONFIG /* Debug */ = {isa = XCBuildConfiguration; buildSettings = {ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon; CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)"; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = Nightcord/Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 16.0; LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks"; MARKETING_VERSION = 1.31.4; PRODUCT_BUNDLE_IDENTIFIER = "com.nightcord.ios"; PRODUCT_NAME = "$(TARGET_NAME)"; SDKROOT = iphoneos; SWIFT_EMIT_LOC_STRINGS = YES; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2"; }; name = Debug; };
+		RELEASECONFIG /* Release */ = {isa = XCBuildConfiguration; buildSettings = {ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon; CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)"; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = Nightcord/Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 16.0; LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks"; MARKETING_VERSION = 1.31.4; PRODUCT_BUNDLE_IDENTIFIER = "com.nightcord.ios"; PRODUCT_NAME = "$(TARGET_NAME)"; SDKROOT = iphoneos; SWIFT_EMIT_LOC_STRINGS = YES; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2"; }; name = Release; };
+		PROJECTDEBUG /* Debug */ = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; CLANG_ENABLE_OBJC_ARC = YES; COPY_PHASE_STRIP = NO; ENABLE_TESTABILITY = YES; ONLY_ACTIVE_ARCH = YES; }; name = Debug; };
+		PROJECTRELEASE /* Release */ = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; CLANG_ENABLE_OBJC_ARC = YES; COPY_PHASE_STRIP = NO; VALIDATE_PRODUCT = YES; }; name = Release; };
+		APPCONFIGS /* Build configuration list for PBXNativeTarget "Nightcord" */ = {isa = XCConfigurationList; buildConfigurations = (DEBUGCONFIG, RELEASECONFIG); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		PROJECTCONFIGS /* Build configuration list for PBXProject "Nightcord" */ = {isa = XCConfigurationList; buildConfigurations = (PROJECTDEBUG, PROJECTRELEASE); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+	};
+	rootObject = PROJECT;
+}
